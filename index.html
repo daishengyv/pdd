@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <link href="https://static.yangkeduo.com/assets/css/mhu_lucky_7980161f730b87b01f8a.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        /* 1px = 0.01rem */
+
+        #main {
+            font-family: PingFangSC-Regular, PingFangSC;
+        }
+
+        .open_pack {
+            transition: 3s;
+            height: 0rem;
+        }
+
+        .flex_l {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        #contnet {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10000;
+            background: linear-gradient(0deg, #FF0804 0%, #FFA84D 100%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .act_head {
+            background: url("https://anyou.oss-cn-beijing.aliyuncs.com/topic/act5.png") no-repeat;
+            background-size: 100%;
+            width: 100%;
+            /* height: 4.40rem; */
+            text-align: center;
+            padding-top: .24rem;
+            font-size: 0.16rem;
+            color: #F4DFA1;
+            font-weight: 600;
+        }
+
+        .act_head>div:nth-of-type(2) {
+            padding-top: .37rem;
+            font-size: .13rem;
+            color: #DF2820;
+        }
+
+        .act_head>div:nth-of-type(3) {
+            width: 2.78rem;
+            height: 1.63rem;
+            border-radius: 0.08rem 0.08rem 0 0;
+            background-color: #fff;
+            margin: 0.27rem auto 0.32rem;
+            padding-top: .2rem;
+            font-size: .12rem;
+            color: #DF2820;
+        }
+
+        .act_head>div:nth-of-type(4) {
+            width: 2.58rem;
+            height: 0.41rem;
+            line-height: .41rem;
+            border-radius: .06rem;
+            font-size: .15rem;
+            color: #F8261F;
+            background-color: #F4DFA0;
+            margin: 0 auto;
+        }
+
+        .act_head>div:nth-of-type(5) {
+            padding-top: .41rem;
+            padding-bottom: .1rem;
+            color: #fff;
+            font-size: .15rem;
+        }
+
+        .act_money>div:nth-of-type(1) {
+            width: 0.7rem;
+            margin: 0 auto;
+            color: #FFB103;
+        }
+
+        .act_money>div:nth-of-type(1) img {
+            color: #FFB103;
+            width: 0.14rem;
+            height: 0.13rem;
+        }
+
+        .act_money>div:nth-of-type(2) {
+            color: #E02E24;
+            font-size: 0.32rem;
+            line-height: .7rem;
+        }
+
+        .act_money>div:nth-of-type(2) span:nth-of-type(1) {
+            font-size: .2rem;
+        }
+
+        .act_money>div:nth-of-type(3) {
+            width: 1.54rem;
+            border-bottom: .01rem dashed #E02E24;
+            margin: 0 auto .09rem;
+        }
+
+        .act_money>div:nth-of-type(4) {
+            color: #000;
+        }
+
+        .flex_b {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .act_content {
+            background: linear-gradient(268deg, rgba(247, 77, 95, 1) 0%, rgba(243, 89, 42, 1) 100%);
+            height: 4.07rem;
+            padding: .12rem;
+        }
+
+        .act_content>div {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: .08rem;
+            color: #FDD898;
+            padding-bottom: .1rem;
+        }
+
+        .act_c_head {
+            font-size: .16rem;
+            font-weight: 500;
+            border-bottom: .01rem solid rgba(255, 255, 255, 0.5);
+            padding: .12rem 0.34rem 0;
+        }
+
+        .act_c_head li {
+            padding-bottom: .1rem;
+        }
+
+        #cash_record ul {
+            width: 3.27rem;
+            height: 0.6rem;
+            border-radius: .04rem;
+            background-color: rgba(243, 98, 61, 0.58);
+            margin: .12rem auto;
+            font-size: .14rem;
+            padding: 0 .12rem;
+        }
+
+        #cash_record img {
+            width: 0.34rem;
+            height: 0.34rem;
+        }
+
+        .choose {
+            border-bottom: .02rem solid #FDD898;
+        }
+
+        .cash_record_g {
+            padding-right: .13rem;
+            margin-right: .2rem;
+            border-right: .01rem solid rgba(255, 255, 255, 0.2);
+            height: .36rem;
+        }
+
+        #cash_record>ul>li span:nth-of-type(1) {
+            width: 0.34rem;
+            height: 0.34rem;
+            line-height: .34rem;
+            text-align: center;
+            display: inline-block;
+            font-size: .22rem;
+        }
+
+        #cash_record>ul>li span:nth-of-type(2) {
+            font-size: .16rem;
+        }
+
+        #cash_record,
+        #presentation_strategy,
+        #rank_list {
+            display: none;
+            max-height: 2.5rem;
+            overflow-y: auto;
+        }
+
+        .show3 #cash_record,
+        .show2 #presentation_strategy,
+        .show1 #rank_list {
+            display: block;
+        }
+
+        #presentation_strategy {
+            font-size: .14rem;
+            text-align: center;
+            font-weight: 500;
+            line-height: .46rem;
+            padding-top: .1rem;
+        }
+
+        #rank_list {
+            font-size: .14rem;
+        }
+
+        #rank_list>div:nth-of-type(1) {
+            font-size: .14rem;
+            text-align: center;
+            font-weight: 500;
+            line-height: .46rem;
+        }
+
+        #rank_list>div:nth-of-type(2) {
+            padding: 0 .16rem;
+        }
+
+        #rank_list>div:nth-of-type(2) ul {
+            border-top: .01rem solid rgba(255, 255, 255, 0.2);
+            padding: .11rem 0;
+        }
+
+        #rank_list img {
+            border-radius: 100%;
+            margin-right: .06rem;
+        }
+
+        .rank_list_num {
+            font-size: .12rem;
+        }
+
+        .rank_list_num span {
+            color: #FFC66E;
+        }
+
+        #receive {
+            position: absolute;
+            top: 0;
+            right: .03rem;
+            background-color: #FF7602;
+            color: #FFFFFF;
+            border-radius: 0 0 1rem 1rem;
+            width: 0.38rem;
+            height: 0.45rem;
+            z-index: 10000;
+            font-size: .11rem;
+            text-align: center;
+            line-height: .16rem;
+            padding-top: .03rem;
+        }
+
+        #rule {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10000;
+            background-color: rgba(0, 0, 0, 0.75);
+            font-size: .14rem;
+            display: none;
+        }
+
+        #rule>div {
+            width: 3rem;
+            height: 3.6rem;
+            border-radius: .08rem;
+            background-color: #fff;
+            margin: 1.24rem auto 0;
+            padding: 0 .12rem;
+            box-sizing: border-box;
+        }
+
+        #rule>div div:nth-of-type(1) {
+            text-align: center;
+            line-height: .48rem;
+            font-size: .18rem;
+            font-weight: 600;
+        }
+
+        #rule>div div:nth-of-type(2),
+        #rule>div div:nth-of-type(3),
+        #rule>div div:nth-of-type(4),
+        #rule>div div:nth-of-type(5) {
+            font-size: .14rem;
+            margin-bottom: .12rem;
+        }
+
+        #rule>div div:nth-of-type(6) {
+            text-align: center;
+            line-height: .48rem;
+            padding-top: .3rem;
+            font-size: .18rem;
+        }
+
+        .ofh {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <!-- 红包 -->
+        <div id="ssr-wrapper">
+            <div class="mobile-container">
+                <div class="mhu-lucky-container">
+                    <div class="bg-fill ml-pu-page ">
+                        <div class="ml-pu-page-pack">
+                            <div class="ml-pu-page-pack-top ">
+                                <div class="ml-pu-page-pack-top-circle"></div>
+                                <p><img class="ml-pu-page-pack-top-avatar"
+                                        src="https://anyou.oss-cn-beijing.aliyuncs.com/topic/0015028c374536338798b5d1f618b0c5.png" />
+                                </p>
+                                <div class="ml-pu-page-pack-top-hint">韩梅梅送你</div>
+                                <div class="ml-pu-page-pack-top-title">助学现金红包</div>
+                            </div>
+                            <div class="open_pack"></div>
+                            <div class="ml-pu-page-pack-bottom "></div>
+                            <div class="ml-pu-page-pack-btn ml-pu-page-pack-btn-breath  unopen-0">開</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contnet -->
+        <div id="contnet">
+            <div>
+                <div class="act_head">
+                    <div>第一期湖大助学金活动</div>
+                    <div>邀请新用户可以领更多助学金哦</div>
+                    <div class="act_money">
+                        <div class="flex_b">
+                            <img src="https://anyou.oss-cn-beijing.aliyuncs.com/topic/act9.png">
+                            <div>手气最佳</div>
+                        </div>
+                        <div><span>￥</span><span id="money">88.90</span></div>
+                        <div></div>
+                        <div><span id="timer">23：33：58：2</span> 后现金将失效</div>
+                    </div>
+                    <div class="ml-pu-page-pack-btn-breath">分享给湖大同学，即可领取助学红包</div>
+                    <div id="payment_time">助学金将于09月20日22点发放与你的微信零钱</div>
+                </div>
+
+                <div class="act_content">
+
+                    <div>
+                        <ul class="flex_b act_c_head">
+                            <li class="tabbar choose" data-index="1">现金记录</li>
+                            <li class="tabbar" data-index="2">提现攻略</li>
+                            <li class="tabbar" data-index="3">排行榜</li>
+                        </ul>
+
+                        <div id="active" class="show1">
+                            <!--  -->
+                            <div id="rank_list">
+                                <div>帮好友助力也可以领取现金</div>
+                                <div>
+                                    <ul class="flex_l">
+                                        <li><img src="https://anyou.oss-cn-beijing.aliyuncs.com/topic/act9.png"></li>
+                                        <li>
+                                            <div>韩梅梅</div>
+                                            <div class="rank_list_num">帮我获得了 <span>69.25</span> 元</div>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="flex_l">
+                                        <li><img src="https://anyou.oss-cn-beijing.aliyuncs.com/topic/act9.png"></li>
+                                        <li>
+                                            <div>韩梅梅</div>
+                                            <div>帮我获得了 69.25 元</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <div id="presentation_strategy">
+                                邀请新用户入群可以领更多助学金哦
+                            </div>
+                            <!--  -->
+                            <div id="cash_record">
+                                <ul class="flex_b">
+                                    <li class="flex_b">
+                                        <span><img
+                                                src="https://anyou.oss-cn-beijing.aliyuncs.com/topic/act9.png"></span>
+
+                                        <span class='cash_record_g'></span>
+                                        <span>韩梅梅</span>
+                                    </li>
+                                    <li>获得69.25元</li>
+                                </ul>
+
+                                <ul class="flex_b">
+                                    <li class="flex_b">
+                                        <span><img
+                                                src="https://anyou.oss-cn-beijing.aliyuncs.com/topic/act9.png"></span>
+
+                                        <span class='cash_record_g'></span>
+                                        <span>韩梅梅</span>
+                                    </li>
+                                    <li>获得69.25元</li>
+                                </ul>
+
+                                <ul class="flex_b">
+                                    <li class="flex_b">
+                                        <span>1</span>
+                                        <span class='cash_record_g'></span>
+                                        <span>韩梅梅</span>
+                                    </li>
+                                    <li>获得69.25元</li>
+                                </ul>
+                                <ul class="flex_b">
+                                    <li class="flex_b">
+                                        <span><img
+                                                src="https://anyou.oss-cn-beijing.aliyuncs.com/topic/act9.png"></span>
+
+                                        <span class='cash_record_g'></span>
+                                        <span>韩梅梅</span>
+                                    </li>
+                                    <li>获得69.25元</li>
+                                </ul>
+
+                                <ul class="flex_b">
+                                    <li class="flex_b">
+                                        <span><img
+                                                src="https://anyou.oss-cn-beijing.aliyuncs.com/topic/act9.png"></span>
+
+                                        <span class='cash_record_g'></span>
+                                        <span>韩梅梅</span>
+                                    </li>
+                                    <li>获得69.25元</li>
+                                </ul>
+
+                                <ul class="flex_b">
+                                    <li class="flex_b">
+                                        <span>1</span>
+                                        <span class='cash_record_g'></span>
+                                        <span>韩梅梅</span>
+                                    </li>
+                                    <li>获得69.25元</li>
+                                </ul>
+                            </div>
+                            <!--  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div id="receive">
+            <div>领取</div>
+            <div>规则</div>
+        </div>
+        <!--  -->
+        <div id="rule">
+            <div>
+                <div>活动规则</div>
+                <div>1、基本资格： 本活动仅限湖南大学在校学</div>
+                <div>2、助学金金额： 状元红包：如果用户是助学金排行榜第一名， 则获得助学金xxx元。</div>
+                <div>助力红包：如果用户支持过的同学获得助学 金，该用户会与状元红包获得者的支持者平 分yyy元现金。</div>
+                <div>阳光普照红包：如果用户及他支持的同学都 没有获得最高助学金，则在yy月zz日随机获 得一个最高20元的现金红包。</div>
+                <div>关闭</div>
+            </div>
+        </div>
+        <!--  -->
+    </div>
+    <script>
+        $(function () {
+            // 开红包函数
+            $('.ml-pu-page-pack-btn').click(function () {
+                $('.open_pack').css('height', '100rem');
+                setTimeout(() => { $('.bg-fill').css('z-index', '1'); }, 1000);
+                $('.ml-pu-page-pack-btn').css('display', 'none');
+            });
+            // 动态增加钱数
+            setInterval(() => {
+                $('#money').html(($('#money').html() * 1 + 1 + Math.random() * 10).toFixed(2))
+            }, 100);
+            // 倒计时
+            setInterval(() => {
+                var SysSecond = (Date.parse('2019-9-25') - Date.now());
+                var millisecond = Math.floor(SysSecond % 1000);
+                var second = Math.floor((SysSecond / 1000) % 60);            // 计算秒     
+                var minite = Math.floor((SysSecond / 60000) % 60);      //计算分 
+                var hour = Math.floor((SysSecond / 3600000) % 24);      //计算小时
+                var day = Math.floor((SysSecond / 3600000) / 24);       //计算天 
+                $("#timer").html((hour < 10 ? '0' + hour : hour) + ":" + (minite < 10 ? '0' + minite : minite) + ":" + (second < 10 ? '0' + second : second) + ":" + ((millisecond + "").substr(0, 2) * 1 < 10 ? '0' + (millisecond + "").substr(0, 2) : (millisecond + "").substr(0, 2)) + "  ")
+            }, 50);
+            // 
+            $('.tabbar').on('click', function (e) {
+                $(this).addClass('choose').siblings('.choose').removeClass('choose');
+                $('#active').attr('class', 'show' + e.currentTarget.dataset.index);
+            });
+            // 显示弹窗规则
+            $('#receive').click(function () {
+                $("#rule").css('display', 'block');
+                $("#main").addClass('ofh');
+            })
+            // 关闭弹窗规则
+            $("#rule").click(function () {
+                $("#rule").css('display', 'none');
+                $("#main").removeClass('ofh');
+            })
+        });
+    </script>
+</body>
+
+</html>
